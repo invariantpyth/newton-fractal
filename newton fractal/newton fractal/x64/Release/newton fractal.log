@@ -1,0 +1,10 @@
+﻿  newton fractal.cpp
+C:\Users\Acer\source\repos\newton fractal\newton fractal\newton fractal.cpp(25,1): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Acer\source\repos\newton fractal\newton fractal\newton fractal.cpp(26,1): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Acer\source\repos\newton fractal\newton fractal\newton fractal.cpp(186,41): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  Создание кода
+  1 of 451 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  newton fractal.vcxproj -> C:\Users\Acer\source\repos\newton fractal\x64\Release\newton fractal.exe
