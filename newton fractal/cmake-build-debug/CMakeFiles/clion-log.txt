@@ -1,4 +1,0 @@
-C:\Users\Acer\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\213.5744.254\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/Acer/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/bin/ninja/win/ninja.exe -G Ninja "C:\Users\Acer\source\repos\newton fractal"
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/Acer/source/repos/newton fractal/cmake-build-debug
