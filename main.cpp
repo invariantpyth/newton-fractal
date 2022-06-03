@@ -1,103 +1,22 @@
-﻿// newton fractal.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <complex>
 #include <map>
 #include <ctime>
 #include <fstream>
+#include "Polynomial.h"
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/imgcodecs/imgcodecs.hpp>
 #include <opencv2/highgui/highgui.hpp>
 using namespace std;
 
-class Polynomial 
-{
-private:
-    vector <complex <double>> coefficients;
-    int degree;
-public:
-    Polynomial(int GetDegree, vector <complex <double>> GetCoefficients = {1, 2}, vector<complex <double>> Roots = { 1, 2 }, bool FromRoots = false)  // Constructor
-    {
-        if (FromRoots) {  // if from_roots is true polynomial constructs from its roots
-            degree = size(Roots);
-            int for_vector = size(Roots) + 1;
-            vector <complex <double>> coeffs;
-            coeffs.resize(for_vector);
-            coeffs[1] = 1;
-            coeffs[0] = -Roots[0];
-            for (int k = 2; k <= degree; k++)
-                {
-                coeffs[k] = coeffs[static_cast<std::vector<std::complex<double>, std::allocator<std::complex<double>>>::size_type>(k) - 1];
-                for (int i = k - 1; i > 0; i--)
-                    {
-                         coeffs[i] = coeffs[static_cast<std::vector<std::complex<double>, std::allocator<std::complex<double>>>::size_type>(i) - 1] - 
-                                     coeffs[i] * Roots[static_cast<std::vector<std::complex<double>, std::allocator<std::complex<double>>>::size_type>(k) - 1];
-                    }
-                 coeffs[0] = -coeffs[0] * Roots[static_cast<std::vector<std::complex<double>, std::allocator<std::complex<double>>>::size_type>(k) - 1];
-            }
-            for (int k = 0; k < size(coeffs); k++) {
-                coeffs[k] = -coeffs[k];
-            }
-
-            coefficients = coeffs;
-        }
-        else {  // else polynomial constructs from its coefficients'
-            degree = GetDegree;
-            coefficients = GetCoefficients;
-        }
-        
-    }
-
-    int degree_of_polynomial()  // function that returns degree of a given polynomial
-    {
-        return degree;
-    }
-
-
-    vector<complex <double>> coefficients_of_polynomial()  // function that returns coeffisients of a given polynomial as a vector
-    {
-        return coefficients;
-    }
-    
-
-    Polynomial derivative()  // function that returns derivative of the given polynomial
-    {
-        vector <complex <double>> derived_coeffs;
-        derived_coeffs.resize(degree);
-        for (int counter = 0; counter < degree; counter += 1)
-        {
-            double diff = degree - counter;
-            derived_coeffs[counter] = coefficients[counter] * (diff);
-        } 
-        Polynomial dp {degree - 1, derived_coeffs};
-        //dp.Polynomial(degree - 1, derived_coeffs);
-        return dp;
-    }
-
-
-    complex <double> value(complex <double> c)  // function that returns value of the given polynomial in the given point
-    {
-        complex <double> result;
-        for (int index = degree; index >= 0; index -= 1)
-        {
-            complex <double> i = index;
-            int po = degree - index;
-            complex <double> coef = coefficients[index];
-            result += coef * pow(c, po);
-        }
-        return result;
-    }
-};
-
 vector <complex <double>> get_roots(int power)
 {
     const double pi = 3.14159265358979323846;
     int counter;
     vector <complex <double>> roots(power);
-    for (counter = 0; counter < power; counter += 1) 
+    for (counter = 0; counter < power; counter += 1)
     {
         roots[counter] = exp(1i * ((counter) * 2 * pi / power));
     }
@@ -131,7 +50,7 @@ int newton(complex <double> c, double epsilon, int max_iter)
 
 void drawing_for_root()
 {
-    map <string, vector <int>> quality
+    const map <string, vector <int>> quality
     {
         {"480p", {480, 854}},
         {"720p", {720, 1280}},
@@ -164,9 +83,9 @@ void drawing_for_root()
     double x, y;
     int maximum = 0;
     int minimum = 100;
-    cv::Mat gradient = cv::imread("C:\\Users\\Acer\\source\\repos\\invariantpyth\\mandelbrot_video\\gradient.png");
+    cv::Mat gradient = cv::imread("(./gradient.png)");
     std::cout << "Doing some math...." << endl;
-    string path = "C:\\Users\\Acer\\YandexDisk\\fractals\\";
+    string path = R"(./fractals/)";
     string name = path + resolution + "_newton_3" + ".png";
     cv::UMat img(qual1, qual2, CV_8UC3);
     int previous_percent = -1;
@@ -201,3 +120,5 @@ int main()
     std::cout << "done\n";
     return 0;
 }
+
+

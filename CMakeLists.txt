@@ -6,5 +6,5 @@ find_package(OpenCV REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(newton_fractal "main.cpp")
+add_executable(newton_fractal "main.cpp" Polynomial.cpp Polynomial.h)
 target_link_libraries( newton_fractal ${OpenCV_LIBS} )
