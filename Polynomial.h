@@ -15,6 +15,7 @@ class Polynomial
 public:
     Polynomial(size_t degree, std::vector<std::complex<double>> coefficients);
     Polynomial(size_t degree, std::complex<double> factor, std::vector<std::complex<double>> roots);
+    Polynomial(size_t degree);
     size_t getDegree() const;
     const std::vector<std::complex<double>> &getCoefficients() const;
     Polynomial derivative();

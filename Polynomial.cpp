@@ -76,3 +76,11 @@ std::complex<double> Polynomial::value(std::complex <double> c)
     }
     return result;
 }
+
+Polynomial::Polynomial(size_t degree) {
+    this->degree = degree;
+    this->coefficients = std::vector<std::complex<double>>(degree + 1, 0);
+    this->coefficients[0] = 1;
+    this->coefficients[degree] = 1;
+}
+
