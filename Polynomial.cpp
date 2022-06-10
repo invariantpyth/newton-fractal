@@ -36,18 +36,6 @@ Polynomial::Polynomial(size_t degree, std::vector<std::complex<double>> coeffici
 }
 
 
-// Getters
-size_t Polynomial::getDegree() const
-{
-    return degree;
-}
-
-const std::vector<std::complex<double>> &Polynomial::getCoefficients() const
-{
-    return coefficients;
-}
-
-
 // Returns the derivative of a polynomial
 Polynomial Polynomial::derivative()
 {
@@ -83,4 +71,36 @@ Polynomial::Polynomial(size_t degree) {
     this->coefficients[0] = 1;
     this->coefficients[degree] = 1;
 }
+
+
+// Counts iterations of the Newton's algorithm for point c and polynomial p
+int Polynomial::newton(std::complex<double> c, double epsilon, int max_iter) {
+    std::complex<double> xn = c;
+    Polynomial dp = this->derivative();
+    for (int counter = 0; counter < max_iter; counter++)
+    {
+        std::complex <double> f = this->value(c);
+
+        if (abs(f) < epsilon)
+        {
+            return counter;
+        }
+
+        std::complex<double> df = dp.value(c);
+
+        if (df == (std::complex<double>)0)
+        {
+            return 0;
+        }
+        else
+        {
+            xn = xn - (f / df);
+        }
+    }
+    return 255;
+}
+
+
+Polynomial::~Polynomial() = default;
+
 

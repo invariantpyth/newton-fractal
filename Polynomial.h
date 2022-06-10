@@ -15,12 +15,11 @@ class Polynomial
 public:
     Polynomial(size_t degree, std::vector<std::complex<double>> coefficients);
     Polynomial(size_t degree, std::complex<double> factor, std::vector<std::complex<double>> roots);
-    Polynomial(size_t degree);
-    size_t getDegree() const;
-    const std::vector<std::complex<double>> &getCoefficients() const;
+    explicit Polynomial(size_t degree);
     Polynomial derivative();
-    std::complex <double> value(std::complex <double> c);
-
+    std::complex<double> value(std::complex <double> c);
+    int newton(std::complex <double> c, double epsilon, int max_iter);
+    ~Polynomial();
 };
 
 
